@@ -17,11 +17,12 @@ def word_status(secret_word, letter):
         else:
             print(letter, end=" ")
 
-
 def word_status(secret_word, letter, try_word):
     position = [index for index,char in enumerate(secret_word) if char == letter]
+    try_word_ls = list(try_word)
     for index in position:
-        try_word[index] = secret_word[index]
+        try_word_ls[index] = secret_word[index]
+    try_word = "".join(try_word_ls)
     return try_word
 
 # try_word funtion
