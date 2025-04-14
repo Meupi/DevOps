@@ -1,4 +1,6 @@
 # secret word input function
+from dataclasses import replace
+
 secret_word = input("Player 1: Choose a secret word:")
 
 # try counter
@@ -14,6 +16,15 @@ def word_status(secret_word, letter):
             print("_", end=" ")
         else:
             print(letter, end=" ")
+
+
+def word_status(secret_word, letter, try_word):
+    position = [index for index,char in enumerate(secret_word) if char == letter]
+    for index in position:
+        try_word[index] = secret_word[index]
+    return try_word
+
+
 
 # failed attempts function
 def failed_attempts(secret_word, letter, n_tries):
@@ -35,13 +46,13 @@ def letter_list(letter):
 def hangman():
     n_tries = 0
     secret_word = input("Player 1: Choose a secret word:")
+    try_word =
     while True:
         letter = input("Player 2: Choose a letter:")
-        word_status(secret_word, letter)
+        try_word = word_status(secret_word, letter, try_word)
         failed_attempts(secret_word, letter, n_tries)
 
 hangman()
-
 
 
 
