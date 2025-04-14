@@ -24,7 +24,13 @@ def word_status(secret_word, letter, try_word):
         try_word[index] = secret_word[index]
     return try_word
 
-
+# try_word funtion
+def set_try_word(secret_word):
+    try_word_ls = []
+    for comp in range(len(secret_word)):
+        try_word_ls.append("_")
+    try_word = "".join(try_word_ls)
+    return try_word
 
 # failed attempts function
 def failed_attempts(secret_word, letter, n_tries):
@@ -46,7 +52,7 @@ def letter_list(letter):
 def hangman():
     n_tries = 0
     secret_word = input("Player 1: Choose a secret word:")
-    try_word =
+    try_word = set_try_word(secret_word)
     while True:
         letter = input("Player 2: Choose a letter:")
         try_word = word_status(secret_word, letter, try_word)
