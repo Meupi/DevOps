@@ -23,6 +23,7 @@ def word_status(secret_word, letter, try_word):
     for index in position:
         try_word_ls[index] = secret_word[index]
     try_word = "".join(try_word_ls)
+    print(try_word)
     return try_word
 
 # try_word funtion
@@ -37,6 +38,7 @@ def set_try_word(secret_word):
 def failed_attempts(secret_word, letter, n_tries):
     if letter not in secret_word:
         n_tries += 1
+        global n_tries
         print(str(n_tries) + " out of 5 tries.")
     elif n_tries == 5:
         print(str(n_tries) + " out of 5 tries. You lose!")
