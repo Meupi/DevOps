@@ -33,8 +33,16 @@ def failed_attempts(secret_word, letter):
         global n_tries
         n_tries += 1
         print(str(n_tries) + " out of 5 tries.")
-    elif n_tries == 5:
-        print(str(n_tries) + " out of 5 tries. You lose!")
+        if n_tries == 5:
+            print(str(n_tries) + " out of 5 tries. You lose!")
+            return n_tries
+
+def loop_breaker(secret_word, try_word, n_tries):
+    if secret_word != try_word and n_tries != 5:
+        return True
+    elif secret_word == secret_word:
+        return False
+    else:
         return False
 
 # letter list function
@@ -44,15 +52,17 @@ def letter_list(letter):
         letter_list.append(letter)
     else:
         print(letter + "has already been chosen. Choose another letter!")
+
+
 # the game
 def hangman():
     n_tries = 0
     secret_word = input("Player 1: Choose a secret word:")
     try_word = set_try_word(secret_word)
-    while True:
+    while loop_breaker(secret_word, try_word, n_tries):
         letter = input("Player 2: Choose a letter:")
         try_word = word_status(secret_word, letter, try_word)
-        failed_attempts(secret_word, letter)
+        n_tries = failed_attempts(secret_word, letter)
 
 hangman()
 
