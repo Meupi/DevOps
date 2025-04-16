@@ -44,11 +44,12 @@ def loop_breaker(secret_word, try_word, n_tries):
         return False
 
 # letter list function
-def letter_list(letter):
-    if letter not in letter_list:
-        letter_list.append(letter)
+def letter_list(letter, let_list):
+    if letter not in let_list:
+        let_list.append(letter)
     else:
-        print(letter + "has already been chosen. Choose another letter!")
+        print(letter + " has already been chosen. Choose another letter!")
+
 
 def outcome(n_tries, secret_word, try_word):
     if n_tries == 5 and secret_word != try_word:
@@ -59,12 +60,13 @@ def outcome(n_tries, secret_word, try_word):
 # the game
 def hangman():
     n_tries = 0
-    letter_list = []
+    let_list = []
     secret_word = input("Player 1: Choose a secret word:")
     try_word = set_try_word(secret_word)
     while loop_breaker(secret_word, try_word, n_tries):
         letter = input("Player 2: Choose a letter:")
         try_word = word_status(secret_word, letter, try_word)
         n_tries = failed_attempts(secret_word, letter, n_tries)
+        letter_list(letter, let_list)
     outcome(n_tries, secret_word, try_word)
 hangman()
